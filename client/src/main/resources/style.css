@@ -1,0 +1,211 @@
+/* --- Global Reset & Base Styles --- */
+*, *::before, *::after {
+    box-sizing: border-box; /* Makes layout math easier */
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    line-height: 1.6; /* Improves readability */
+    font-size: 16px; /* Base font size for mobile */
+}
+
+/* --- Mobile First Styles (Default) --- */
+
+.top-bar {
+  display: flex;
+  flex-direction: column; /* Stack items vertically on small screens */
+  align-items: flex-start; /* Align items to the start when stacked */
+  padding: 10px;
+  background-color: #333;
+  color: white;
+}
+
+.app-name {
+    font-size: 1.3em; /* Slightly larger for app name */
+    font-weight: bold;
+    margin-bottom: 10px; /* Space when stacked */
+}
+
+.top-bar-right-items {
+  /* background-color: #333; Inherits from .top-bar */
+  /* color: white; Inherits from .top-bar */
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%; /* Take full width to allow items to spread if needed */
+}
+
+.github-icon-link {
+  /* place holder */
+}
+
+.user-icon-container {
+  position: relative; /* For the dropdown positioning */
+  margin-left: auto; /* Push user icon to the far right of this flex container */
+}
+
+.github-icon {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+}
+
+.user-icon {
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+.main-content {
+    padding: 15px; /* Slightly less padding on mobile */
+}
+
+.contact-info-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: black;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 250px;
+    max-width: 90vw; /* Prevent it from being wider than the viewport */
+}
+
+.contact-info-dropdown.resume-section p {
+    margin: 8px 0; /* Slightly more vertical space */
+    font-size: 0.9em;
+    text-align: left;
+    color: #f0f0f0; /* Lighter text on black background */
+}
+.contact-info-dropdown.resume-section p a {
+    color: #58a6ff; /* Brighter blue for links on black background */
+    text-decoration: none;
+}
+.contact-info-dropdown.resume-section p a:hover {
+    text-decoration: underline;
+}
+
+.contact-info-dropdown h2 { /* If you add an H2 to the dropdown */
+    margin-top: 0;
+    font-size: 1.1em;
+    color: #f0f0f0; /* Lighter text on black background */
+    border-bottom: 1px solid #555; /* Darker border on black background */
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.horizontal-collections-container {
+    display: flex;
+    flex-direction: column; /* Stack collection spaces vertically */
+    gap: 15px; /* Space between stacked items */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px; /* Adjust padding */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+}
+
+.collection-space {
+    /* flex: 1; Not needed when stacked, will take full width */
+    border: 1px solid #b0b0b0;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #fff;
+    min-height: 80px; /* Slightly smaller min-height for mobile */
+}
+
+.collection-space h3, /* Assuming h3 from your Scala code */
+.collection-space h4 { /* Keeping h4 just in case */
+    margin-top: 0;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    font-size: 1.1em; /* Consistent heading size */
+}
+
+.collection-space ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+.collection-space li {
+    padding: 5px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.collection-space li:last-child {
+    border-bottom: none;
+}
+
+.empty-collection-placeholder {
+    color: #888;
+    font-style: italic;
+}
+
+/* --- Tablet Styles (e.g., 768px and up) --- */
+@media (min-width: 768px) {
+    body {
+        font-size: 17px; /* Slightly larger base font for tablets */
+    }
+
+    .top-bar {
+      flex-direction: row; /* Horizontal layout */
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    .app-name {
+        font-size: 1.5em;
+        margin-bottom: 0; /* No margin needed when horizontal */
+    }
+
+    .top-bar-right-items {
+      width: auto; /* Allow content to determine width */
+    }
+
+    .user-icon-container {
+        margin-left: 0; /* Reset margin, gap will handle spacing */
+    }
+
+    .main-content {
+        padding: 20px; /* Restore desktop padding */
+    }
+
+    .horizontal-collections-container {
+        padding: 15px;
+        /* Could go to 2 columns here if desired, or wait for desktop */
+        /* Example for 2 columns:
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        */
+    }
+
+    .collection-space h3,
+    .collection-space h4 {
+        font-size: 1.2em;
+    }
+}
+
+/* --- Desktop Styles (e.g., 1024px and up) --- */
+@media (min-width: 1024px) {
+    body {
+        font-size: 18px; /* Larger base font for desktops */
+    }
+
+    .horizontal-collections-container {
+        flex-direction: row; /* Horizontal layout for collection spaces */
+        justify-content: space-around;
+        gap: 20px; /* Restore original gap */
+    }
+
+    .collection-space {
+        flex: 1; /* Allow them to share space equally */
+        min-height: 100px; /* Restore original min-height */
+    }
+}
