@@ -13,7 +13,7 @@ object Main extends ZIOAppDefault {
    */
 
   private val appRoutes: Routes[Any, Response] = Routes(
-    Method.GET / Root -> handler(Response.redirect(URL.root / "index.html")),
+    Method.GET / "" -> Handler.fromResource("public/index.html"),
     Method.GET / "ping" -> handler(Response.text("pong"))
 
 
