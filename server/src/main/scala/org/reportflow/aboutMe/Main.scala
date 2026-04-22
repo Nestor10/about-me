@@ -3,6 +3,7 @@ package org.reportflow.aboutMe
 import zio._
 
 import zio.http._
+import zio.http.codec.PathCodec
 
 object Main extends ZIOAppDefault {
 
@@ -13,7 +14,7 @@ object Main extends ZIOAppDefault {
    */
 
   private val appRoutes: Routes[Any, Response] = Routes(
-    Method.GET / "" -> Handler.fromResource("public/index.html"),
+    Method.GET / PathCodec.empty -> Handler.fromResource("public/index.html"),
     Method.GET / "ping" -> handler(Response.text("pong"))
 
 
