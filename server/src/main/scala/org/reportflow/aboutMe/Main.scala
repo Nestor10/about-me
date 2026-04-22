@@ -3,6 +3,7 @@ package org.reportflow.aboutMe
 import zio._
 
 import zio.http._
+import zio.http.codec.PathCodec
 
 object Main extends ZIOAppDefault {
 
@@ -13,17 +14,16 @@ object Main extends ZIOAppDefault {
    */
 
   private val appRoutes: Routes[Any, Response] = Routes(
-    Method.GET / "about-me" ->  handler{(request: Request) =>  Response.redirect(URL.root / "about-me" / "public" / "index.html" )},
-    Method.GET / "about-me" / "ping" ->  handler(Response.text("pong"))
+    Method.GET / PathCodec.empty -> Handler.fromResource("public/index.html"),
+    Method.GET / "ping" -> handler(Response.text("pong"))
 
 
       )
 
 
-  private val routes = appRoutes @@ Middleware.serveResources(Path.empty / "about-me" / "public" , "public")
+  private val routes = appRoutes @@ Middleware.serveResources(Path.empty, "public")
 
   override def run: ZIO[Any, Throwable, Nothing] = Server
     .serve(routes)
     .provide(Server.defaultWithPort(10000))
 }
-
